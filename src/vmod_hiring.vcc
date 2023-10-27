@@ -9,22 +9,12 @@ $Module hiring 3 Hiring VMOD
 DESCRIPTION
 ===========
 
-This is the embedded documentation for the hiring VMOD. It should
-mention what the vmod is intended to do.
+This is the embedded documentation for the hiring VMOD.
 
-It can span multiple lines and is written in RST format.
-You can even have links and lists in here:
+The github repository for the code is available at:
+* https://github.com/GransMango/hiring_vmod/
 
-* https://github.com/varnish/libvmod-hiring/
-* https://www.varnish-cache.org/
+$Function INT count(STRING haystack, STRING needle)
 
-$Event event_function
-$Function STRING info()
-
-Returns a string set by the last VCL event, demonstrating the use of
-event functions.
-
-$Function STRING hello(STRING)
-
-The different functions provided by the VMOD should also have their own
-embedded documentation. This section is for the hello() function.
+Count is a function that counts how many times the needle shows up in haystack.
+The value is returned as an integer

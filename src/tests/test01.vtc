@@ -1,4 +1,4 @@
-varnishtest "Test hiring vmod"
+varnishtest "count()"
 
 server s1 {
        rxreq
@@ -7,30 +7,34 @@ server s1 {
 
 varnish v1 -vcl+backend {
 	import std;
-	import ${vmod_hiring};
+	import hiring;
 
 	sub vcl_init {
-		std.log(hiring.info());
+		std.log("Loaded the hiring VMOD");
 	}
 
 	sub vcl_deliver {
-		set resp.http.hello = hiring.hello("World");
-		set resp.http.info = hiring.info();
-	}
-} -start
+		set resp.http.test = hiring.count("test", "t");
+		set resp.http.mississippi = hiring.count("mississippi", "iss");
+		set resp.http.hello = hiring.count("hello", "x");
+		set resp.http.empty = hiring.count("", "");
 
-logexpect l1 -v v1 -g raw -d 1 {
-	expect 0 0    CLI     {^Rd vcl.load}
-	expect 0 =    VCL_Log {^vmod_hiring loaded at }
+		// Write to varnish log
+		std.log("Test with parameters test and t gave result: " + resp.http.test);
+		std.log("Test with parameters mississippi and iss gave result: " + resp.http.mississippi);
+		std.log("Test with parameters hello and x gave result: " + resp.http.hello);
+		std.log("Test with parameters " + " and " + " gave result: " + resp.http.empty);
+	}
 } -start
 
 client c1 {
 	txreq -url "/"
 	rxresp
-	expect resp.http.hello == "Hello, World"
-	expect resp.http.info  ~  "^vmod_hiring warmed at "
+	expect resp.http.hello == 0
+	expect resp.http.empty == 0
+	expect resp.http.test == 2
+	expect resp.http.mississippi == 2
 }
 
 client c1 -run
 
-logexpect l1 -wait

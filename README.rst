@@ -2,12 +2,6 @@
 vmod-hiring
 ============
 
-notice
-------
-
-For new developments, we recommend to consider using
-https://github.com/Dridi/vcdk
-
 SYNOPSIS
 ========
 
@@ -16,28 +10,26 @@ import hiring;
 DESCRIPTION
 ===========
 
-Hiring Varnish vmod demonstrating how to write an out-of-tree Varnish vmod.
-
-Implements the traditional Hello World as a vmod.
+Hiring Varnish vmod, a vmod providing a count() function to count occurences of needle in a haystack.
 
 FUNCTIONS
 =========
 
-hello
+count
 -----
 
 Prototype
         ::
 
-                hello(STRING S)
+                count(STRING haystack, STRING needle)
 Return value
-	STRING
+	INT
 Description
-	Returns "Hello, " prepended to S
+	Returns integer value representing occurences of needle in haystack
 Hiring
         ::
 
-                set resp.http.hello = hiring.hello("World");
+                set resp.http.hello = hiring.count("Example", "xa");
 
 INSTALLATION
 ============
