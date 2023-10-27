@@ -1,20 +1,16 @@
 This is a running log of changes to libvmod-hiring.
 
-libvmod-hiring 0.2 (unreleased)
+libvmod-hiring 0.2 (2023-27-2023)
 --------------------------------
 
-* The most recent release entry is at the top.
+* Minor changes to test file
 
-libvmod-hiring 0.1 (1970-01-01)
+libvmod-hiring 0.1 (2023-26-2023)
 --------------------------------
 
-* Add list items with changes done.
-* Issues fixed could also be list entries.
+* Renamed VMOD to hiring
+* Removed existing functions
+* Added function count()
 
-If you need to, a paragraph or two of explanation for any complicated changes
-is appreciated.
-
-Make sure to mention any changing breaking user-visible interfaces. (function
-names, type of arguments, order of arguments)
-
+The hello() and info() function of the previous VMOD are now removed.
 
