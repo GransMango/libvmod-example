@@ -88,8 +88,8 @@ In your VCL you could then use this vmod along the following lines::
         import hiring;
 
         sub vcl_deliver {
-                # This sets resp.http.hello to "Hello, World"
-                set resp.http.hello = hiring.hello("World");
+                # This checks how many occurances of "e" is in the word "jalapeno"
+                set resp.http.jalapeno = hiring.count("jalapeno", "e");
         }
 
 COMMON PROBLEMS
