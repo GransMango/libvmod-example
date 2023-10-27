@@ -1,0 +1,31 @@
+varnishtest "count()"
+
+server s1 {
+       rxreq
+       txresp
+} -start
+
+varnish v1 -vcl+backend {
+	import std;
+	import hiring;
+
+	sub vcl_init {
+		std.log("Loaded the hiring VMOD");
+	}
+
+	sub vcl_deliver {
+		set resp.http.big_needle = hiring.count("small haystack", "big bigger needle");
+
+		// Write to varnish log
+		std.log("Test with parameters small haystack and big bigger needle gave result: " + resp.http.big_needle);
+	}
+} -start
+
+client c1 {
+	txreq -url "/"
+	rxresp
+	expect resp.http.big_needle == 0
+}
+
+client c1 -run
+
