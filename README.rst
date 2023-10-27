@@ -1,5 +1,5 @@
 ============
-vmod-example
+vmod-hiring
 ============
 
 notice
@@ -11,12 +11,12 @@ https://github.com/Dridi/vcdk
 SYNOPSIS
 ========
 
-import example;
+import hiring;
 
 DESCRIPTION
 ===========
 
-Example Varnish vmod demonstrating how to write an out-of-tree Varnish vmod.
+Hiring Varnish vmod demonstrating how to write an out-of-tree Varnish vmod.
 
 Implements the traditional Hello World as a vmod.
 
@@ -34,10 +34,10 @@ Return value
 	STRING
 Description
 	Returns "Hello, " prepended to S
-Example
+Hiring
         ::
 
-                set resp.http.hello = example.hello("World");
+                set resp.http.hello = hiring.hello("World");
 
 INSTALLATION
 ============
@@ -93,11 +93,11 @@ USAGE
 
 In your VCL you could then use this vmod along the following lines::
 
-        import example;
+        import hiring;
 
         sub vcl_deliver {
                 # This sets resp.http.hello to "Hello, World"
-                set resp.http.hello = example.hello("World");
+                set resp.http.hello = hiring.hello("World");
         }
 
 COMMON PROBLEMS
@@ -117,14 +117,14 @@ COMMON PROBLEMS
 START YOUR OWN VMOD
 ===================
 
-The basic steps to start a new vmod from this example are::
+The basic steps to start a new vmod from this hiring are::
 
   name=myvmod
-  git clone libvmod-example libvmod-$name
+  git clone libvmod-hiring libvmod-$name
   cd libvmod-$name
   ./rename-vmod-script $name
 
 and follow the instructions output by rename-vmod-script
 
-.. image:: https://circleci.com/gh/varnishcache/libvmod-example/tree/master.svg?style=svg
-    :target: https://app.circleci.com/pipelines/github/varnishcache/libvmod-example?branch=master
+.. image:: https://circleci.com/gh/varnishcache/libvmod-hiring/tree/master.svg?style=svg
+    :target: https://app.circleci.com/pipelines/github/varnishcache/libvmod-hiring?branch=master
